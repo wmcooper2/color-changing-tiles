@@ -1,18 +1,12 @@
 import React from "react";
-import Square from "./squares";
+import Square from "./square";
 
-function Row(props) {
-  const { choices } = props.props;
+function Row() {
   let row = [];
+  let squareID = 0;
   for (let i = 0; i < 5; i++) {
-    row.push(
-      <Seat
-        seatKey={props.rowKey + i}
-        key={props.rowKey + i}
-        handleClick={props.handleClick}
-        choices={choices}
-      />
-    );
+    row.push(<Square key={squareID} id={squareID} />);
+    squareID++;
   }
   return <div className="row">{row}</div>;
 }
