@@ -1,8 +1,6 @@
-This is a clone of a game I saw someone demo at a training event.
-
-There was a significant problem with the version they made, so I decided to recreate it.
-
-I fixed the issue.
+### Notes
+* The build folder is named "colored-tiles"
+* This is a clone of a game I saw someone demo at a training event. There was a significant problem with the version they made, so I decided to recreate it. I fixed the issue.
 
 
 To use:
