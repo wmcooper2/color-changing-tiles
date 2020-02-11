@@ -4,7 +4,8 @@
 
 
 To use:
-* just click the squares
+* click the squares to change the colors
 * to reset, just reload the site
-* when clicked, a white square will cycle through 5 colors and not return to white
+* when clicked, a white square will cycle through 5 colors and not return to white as it is now "in play"
 * it is meant to be a tool that keeps track of what "teams" have "won" which squares
+* this is meant to be a flexible game where you make up the rules. It is the game board that keeps track of the game state.

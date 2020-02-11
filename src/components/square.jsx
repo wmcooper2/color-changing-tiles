@@ -28,7 +28,7 @@ class Square extends React.Component {
     "rgb(0, 0, 255)", //blue
     "rgb(255, 16, 3)", //red
     "rgb(116, 255, 3)", //green
-    "rgb(255, 3, 242)", //violet
+    "rgb(128, 0, 128)", //violet
     "rgb(255, 255, 0)" //yellow
   ];
 
