@@ -23,26 +23,20 @@ class Square extends React.Component {
     });
   };
 
-  defaultColor = "rgb(255,255,255)"; //white
-  colors = [
-    "rgb(0, 0, 255)", //blue
-    "rgb(255, 16, 3)", //red
-    "rgb(116, 255, 3)", //green
-    "rgb(128, 0, 128)", //violet
-    "rgb(255, 255, 0)" //yellow
-  ];
+  defaultColor = "white";
+  colors = ["purple", "red", "yellow", "green", "blue"];
 
   render() {
     let squareColor = this.state.inPlay
       ? this.colors[this.state.choice]
       : this.defaultColor;
+    let classes = "square " + squareColor;
     return (
       <div
-        className="square"
+        className={classes}
         onClick={event => {
           this.handleClick(event);
         }}
-        style={{ backgroundColor: squareColor }}
       ></div>
     );
   }

@@ -10,18 +10,20 @@ function App() {
   }
   return (
     <React.Fragment>
+      <div id="leftfiller"></div>
       <div className="App">{rows}</div>
-      <p className="instructions">
-        Click on a square to change its color. Squares cycle through
-        <span className="colors">
-          <span className="red">Red</span>,<span className="green"> Green</span>
-          ,<span className="purple"> Purple</span>,
-          <span className="yellow"> Yellow</span> and
-          <span className="blue"> Blue</span>.
-        </span>
-        <br />
+      <div className="instructions">
+        Click on a square to change its color. Squares cycle through these
+        colors.
+        <p className="colors">
+          <span className="red">Red</span>
+          <span className="yellow">Yellow</span>
+          <span className="green">Green</span>
+          <span className="blue">Blue</span>
+          <span className="purple">Purple</span>
+        </p>
         Refresh the page to reset the board.
-      </p>
+      </div>
     </React.Fragment>
   );
 }
