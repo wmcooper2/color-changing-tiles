@@ -10,7 +10,7 @@
 
 # production
 /build
-/colored-tiles
+/colored-tiles*
 
 # misc
 .DS_Store

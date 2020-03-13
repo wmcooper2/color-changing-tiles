@@ -38,6 +38,7 @@ body {
 
 #root {
   display: flex;
+  justify-content: space-between;
 }
 
 #App {
@@ -58,8 +59,6 @@ body {
   display: flex;
   width: var(--square-size);
   height: var(--square-size);
-  border-radius: calc(2 * --soft-borders);
-  /* margin: var(--thin-margin); */
   background-color: var(--white);
   box-shadow: inset 0px 0px 10px var(--light-blue);
 }
