@@ -1,4 +1,4 @@
-# Color Changing Tiles
+# [Color Changing Tiles](https://teflassistant.com/color-changing-tiles/)
 A generic gameboard of color changing tiles.
 
 ![Screenshot](screenshot.jpg)
