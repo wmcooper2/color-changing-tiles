@@ -14,15 +14,16 @@ function App() {
       <div className="App">{rows}</div>
       <div className="instructions">
         <p>Click on a square to change its color.</p>
-        <p>Squares cycle through these colors.</p>
+        {/* <p>Squares cycle through these colors.</p> */}
         <p>Refresh the page to reset the board.</p>
-        <p className="colors">
-          <span className="red">Red</span>
-          <span className="yellow">Yellow</span>
-          <span className="green">Green</span>
-          <span className="blue">Blue</span>
-          <span className="purple">Purple</span>
-        </p>
+
+        {/* <p className="colors"> */}
+          {/* <span className="red">Red</span> */}
+          {/* <span className="yellow">Yellow</span> */}
+          {/* <span className="green">Green</span> */}
+          {/* <span className="blue">Blue</span> */}
+          {/* <span className="purple">Purple</span> */}
+        {/* </p> */}
       </div>
     </React.Fragment>
   );

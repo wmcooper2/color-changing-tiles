@@ -4,36 +4,55 @@ class Square extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      choice: 0,
-      inPlay: false
+      colorIndex: 0,
+      inPlay: false,
+      color: "white",
+      classes: "square",
+      animated: false
     };
+    this.colors = ["purple", "red", "yellow", "green", "blue"];
     this.handleClick = this.handleClick.bind(this);
+    this.cycleColor = this.cycleColor.bind(this);
+    this.toggleAnimation = this.toggleAnimation.bind(this);
   }
 
-  handleClick = () => {
-    let newChoice;
-    if (this.state.choice >= 4) {
-      newChoice = 0;
+  cycleColor = () => {
+    let color;
+    if (this.state.colorIndex >= 4) {
+      color = 0;
     } else {
-      newChoice = this.state.choice + 1;
+      color = this.state.colorIndex + 1;
     }
     this.setState({
       inPlay: true,
-      choice: newChoice
+      colorIndex: color,
+      classes: "square " + this.colors[this.state.colorIndex]
     });
-  };
+  }
 
-  defaultColor = "white";
-  colors = ["purple", "red", "yellow", "green", "blue"];
+  toggleAnimation = () => {
+    console.log("toggle animation");
+    this.setState(() => ({
+      animated:true
+    }));
+    setTimeout(() => this.setState(
+      () => ({animated: false})), 300);
+  }
+
+  handleClick = () => {
+    this.cycleColor();
+    this.toggleAnimation()
+  };
 
   render() {
     let squareColor = this.state.inPlay
-      ? this.colors[this.state.choice]
-      : this.defaultColor;
-    let classes = "square " + squareColor;
+      ? this.colors[this.state.colorIndex]
+      : this.state.color;
+
+    // let classes = "square " + squareColor;
     return (
       <div
-        className={classes}
+        className={`${this.state.classes} ${this.state.animated ? "animated" : ""}`}
         onClick={event => {
           this.handleClick(event);
         }}
