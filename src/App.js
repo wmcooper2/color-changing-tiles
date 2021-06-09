@@ -1,32 +1,50 @@
 import React from "react";
 import Row from "./components/row";
+import Grid from "./components/grid";
 import "./App.css";
 // add reset buttons and an input that allows the user to choose the number of squares
 
-function App() {
-  let rows = [];
-  for (let i = 0; i < 5; i++) {
-    rows.push(<Row key={i} />);
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      size: 5
+    };
+    this.smallerGrid = this.smallerGrid.bind(this);
+    this.biggerGrid = this.biggerGrid.bind(this);
   }
-  return (
+
+  smallerGrid = () => {
+    console.log("smaller");
+    this.setState({
+      size: this.state.size - 1
+    })
+  }
+
+  biggerGrid = () => {
+    console.log("bigger", this.state.size);
+    this.setState({
+      size: this.state.size + 1
+    })
+  }
+
+
+  render() {
+    return (
     <React.Fragment>
       <div id="leftfiller"></div>
-      <div className="App">{rows}</div>
+      <Grid size={this.state.size}/>
       <div className="instructions">
         <p>Click on a square to change its color.</p>
-        {/* <p>Squares cycle through these colors.</p> */}
         <p>Refresh the page to reset the board.</p>
-
-        {/* <p className="colors"> */}
-          {/* <span className="red">Red</span> */}
-          {/* <span className="yellow">Yellow</span> */}
-          {/* <span className="green">Green</span> */}
-          {/* <span className="blue">Blue</span> */}
-          {/* <span className="purple">Purple</span> */}
-        {/* </p> */}
+        <p>size
+          <button onClick={() => this.biggerGrid()}>bigger</button>
+          <button onClick={() => this.smallerGrid()}>smaller</button>
+        </p>
       </div>
     </React.Fragment>
-  );
+    );
+  }
 }
 
 export default App;

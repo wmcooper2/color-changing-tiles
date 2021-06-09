@@ -8,7 +8,10 @@ class Square extends React.Component {
       inPlay: false,
       color: "white",
       classes: "square",
-      animated: false
+      animated: false,
+      squareID: props.id,
+      xpos: props.xpos,
+      ypos: props.ypos,
     };
     this.colors = ["purple", "red", "yellow", "green", "blue"];
     this.handleClick = this.handleClick.bind(this);
@@ -41,7 +44,8 @@ class Square extends React.Component {
 
   handleClick = () => {
     this.cycleColor();
-    this.toggleAnimation()
+    this.toggleAnimation();
+    console.log(this.state.xpos, this.state.ypos);
   };
 
   render() {
