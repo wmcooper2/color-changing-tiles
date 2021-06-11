@@ -1,7 +1,7 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor({id, xpos, ypos}) {
+  constructor({id, xpos, ypos, size, onSquareClick}) {
     super();
     this.state = {
       colorIndex: 0,
@@ -10,6 +10,7 @@ class Square extends React.Component {
       classes: "square",
       animated: false,
       squareID: id,
+      size: size,
       xpos: xpos,
       ypos: ypos,
     };
@@ -17,6 +18,7 @@ class Square extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.cycleColor = this.cycleColor.bind(this);
     this.toggleAnimation = this.toggleAnimation.bind(this);
+    this.onSquareClick = onSquareClick;
   }
 
   cycleColor = () => {
@@ -36,16 +38,19 @@ class Square extends React.Component {
       () => ({animated: false})), 300);
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
     this.cycleColor();
     this.toggleAnimation();
+    this.onSquareClick(e.target.id);
   };
 
   render() {
     return (
       <div
         className={`${this.state.classes} ${this.state.animated ? "animated" : ""}`}
-        onClick={event => { this.handleClick(event); }}>
+        onClick={event => { this.handleClick(event); }}
+        id={this.state.ypos * this.state.size + this.state.xpos}>
+        {this.state.ypos * this.state.size + this.state.xpos}
       </div>
     );
   }

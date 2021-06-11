@@ -1,16 +1,19 @@
 import React from "react";
 import Grid from "./components/grid";
 import "./App.css";
+import {lookNorth} from "./capture";
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      size: 5
+      size: 5,
+      clickedSquare: -1
     };
     this.smallerGrid = this.smallerGrid.bind(this);
     this.biggerGrid = this.biggerGrid.bind(this);
     this.mostRestrictiveDimension = this.mostRestrictiveDimension.bind(this);
+    this.captureSquares = this.captureSquares.bind(this);
   }
 
   mostRestrictiveDimension = () => {
@@ -20,6 +23,17 @@ class App extends React.Component {
     return restriction;
   }
 
+  captureSquares = () => {
+    console.log(this.state);
+    const north = lookNorth(this.state.clickedSquare, this.state.size);
+    console.log("NORTH", north);
+  }
+
+  setClickedSquare = (squareId) => {
+    this.setState({
+      clickedSquare: squareId
+    })
+  }
 
   smallerGrid = () => {
     let currentSize = this.state.size;
@@ -39,12 +53,12 @@ class App extends React.Component {
     return (
     <React.Fragment>
       <div id="leftfiller"></div>
-      <Grid size={this.state.size} dimension={this.mostRestrictiveDimension()}/>
+      <Grid size={this.state.size} dimension={this.mostRestrictiveDimension()} onSquareClick={this.setClickedSquare}/>
       <div className="instructions">
-        <p>Click on a square to change its color.</p>
-        <p>Refresh the page to reset the board.</p>
+        <p>Refresh to reset.</p>
           <button onClick={() => this.biggerGrid()}>bigger</button>
           <button onClick={() => this.smallerGrid()}>smaller</button>
+          <button onClick={() => this.captureSquares()}>capture</button>
       </div>
       
     </React.Fragment>

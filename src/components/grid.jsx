@@ -1,11 +1,11 @@
 import React from "react";
 import Row from "./row";
 
-let Grid = ({size, dimension}) => {
+let Grid = ({size, dimension, onSquareClick}) => {
   let rows = []
   let Y = 0;
   for (let i = 0; i < size; i++) {
-    rows.push(<Row key={Y} id={Y} size={size} Y={Y} dimension={dimension}/>);
+    rows.push(<Row key={Y} id={Y} size={size} Y={Y} dimension={dimension} onSquareClick={onSquareClick}/>);
     Y++;
   }
   return (
