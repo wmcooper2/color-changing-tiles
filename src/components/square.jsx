@@ -1,17 +1,17 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor({id, xpos, ypos}) {
+    super();
     this.state = {
       colorIndex: 0,
       inPlay: false,
       color: "white",
       classes: "square",
       animated: false,
-      squareID: props.id,
-      xpos: props.xpos,
-      ypos: props.ypos,
+      squareID: id,
+      xpos: xpos,
+      ypos: ypos,
     };
     this.colors = ["purple", "red", "yellow", "green", "blue"];
     this.handleClick = this.handleClick.bind(this);
@@ -20,12 +20,7 @@ class Square extends React.Component {
   }
 
   cycleColor = () => {
-    let color;
-    if (this.state.colorIndex >= 4) {
-      color = 0;
-    } else {
-      color = this.state.colorIndex + 1;
-    }
+    let color = this.state.colorIndex >= 4 ? 0 : this.state.colorIndex +1;
     this.setState({
       inPlay: true,
       colorIndex: color,
@@ -34,7 +29,6 @@ class Square extends React.Component {
   }
 
   toggleAnimation = () => {
-    console.log("toggle animation");
     this.setState(() => ({
       animated:true
     }));
@@ -45,22 +39,14 @@ class Square extends React.Component {
   handleClick = () => {
     this.cycleColor();
     this.toggleAnimation();
-    console.log(this.state.xpos, this.state.ypos);
   };
 
   render() {
-    let squareColor = this.state.inPlay
-      ? this.colors[this.state.colorIndex]
-      : this.state.color;
-
-    // let classes = "square " + squareColor;
     return (
       <div
         className={`${this.state.classes} ${this.state.animated ? "animated" : ""}`}
-        onClick={event => {
-          this.handleClick(event);
-        }}
-      ></div>
+        onClick={event => { this.handleClick(event); }}>
+      </div>
     );
   }
 }

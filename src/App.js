@@ -1,8 +1,6 @@
 import React from "react";
-import Row from "./components/row";
 import Grid from "./components/grid";
 import "./App.css";
-// add reset buttons and an input that allows the user to choose the number of squares
 
 class App extends React.Component {
   constructor(props){
@@ -12,36 +10,43 @@ class App extends React.Component {
     };
     this.smallerGrid = this.smallerGrid.bind(this);
     this.biggerGrid = this.biggerGrid.bind(this);
+    this.mostRestrictiveDimension = this.mostRestrictiveDimension.bind(this);
   }
 
+  mostRestrictiveDimension = () => {
+    let windowHeight = window.innerHeight;
+    let windowWidth = window.innerWidth;
+    let restriction = windowHeight > windowWidth ? windowWidth : windowHeight;
+    return restriction;
+  }
+
+
   smallerGrid = () => {
-    console.log("smaller");
+    let currentSize = this.state.size;
     this.setState({
-      size: this.state.size - 1
+      size: currentSize > 3 ? currentSize - 1 : 3
     })
   }
 
   biggerGrid = () => {
-    console.log("bigger", this.state.size);
+    let currentSize = this.state.size;
     this.setState({
-      size: this.state.size + 1
+      size: currentSize < 10 ? currentSize + 1 : 10
     })
   }
-
 
   render() {
     return (
     <React.Fragment>
       <div id="leftfiller"></div>
-      <Grid size={this.state.size}/>
+      <Grid size={this.state.size} dimension={this.mostRestrictiveDimension()}/>
       <div className="instructions">
         <p>Click on a square to change its color.</p>
         <p>Refresh the page to reset the board.</p>
-        <p>size
           <button onClick={() => this.biggerGrid()}>bigger</button>
           <button onClick={() => this.smallerGrid()}>smaller</button>
-        </p>
       </div>
+      
     </React.Fragment>
     );
   }
