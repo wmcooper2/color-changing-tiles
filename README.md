@@ -21,7 +21,8 @@ There was a significant problem with the version they made because of the quirks
 * JavaScript
 
 ## Problems/Solutions
-N/A
+* getting the squares to adapt to the most restrictive window dimension so that it would always be square and fit within the window was a small challenge after having not coded in JavaScript for a few months.
+* Now, I'm working on a button that allows the last clicked square to act as an anchor for automatically converting other squares between it and another square of the same color to its own color.
 
 ## More Information
 N/A
