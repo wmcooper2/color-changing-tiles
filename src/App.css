@@ -35,6 +35,22 @@ body {
   background-color: var(--black);
 }
 
+@font-face {
+  font-family: prompt;
+  src: url(/public/Prompt/Prompt-Light.ttf);
+}
+
+button {
+  background-color: white;
+  color: black;
+  font-family: prompt;
+  border-radius: 10%;
+  outline: none;
+  border: none;
+  font-size:1rem;
+  margin: 1rem;
+}
+
 #root {
   display: flex;
   justify-content: space-between;
@@ -74,7 +90,7 @@ body {
 .instructions {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
   text-align: center;
   align-items: center;

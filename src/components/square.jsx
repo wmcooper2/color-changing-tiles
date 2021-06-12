@@ -50,7 +50,7 @@ class Square extends React.Component {
         className={`${this.state.classes} ${this.state.animated ? "animated" : ""}`}
         onClick={event => { this.handleClick(event); }}
         id={this.state.ypos * this.state.size + this.state.xpos}>
-        {this.state.ypos * this.state.size + this.state.xpos}
+        {/* {this.state.ypos * this.state.size + this.state.xpos} */}
       </div>
     );
   }

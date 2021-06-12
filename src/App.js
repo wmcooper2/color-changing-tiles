@@ -40,9 +40,11 @@ class App extends React.Component {
   }
 
   captureSquares = () => {
+
     const sq = this.state.clickedSquare;
     const size = this.state.size;
 
+    if (sq >= 0){
     const northMatch = lookNorth(sq, size);
     if (northMatch !== null){
       changeNorth(sq, northMatch, size);
@@ -82,6 +84,7 @@ class App extends React.Component {
     if (northWestMatch !== null) {
       changeNorthWest(sq, northWestMatch, size)
     }
+  }
   }
 
   setClickedSquare = (squareId) => {
