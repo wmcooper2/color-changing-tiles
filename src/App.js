@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "./components/grid";
 import "./App.css";
-import {lookNorth} from "./capture";
+import {lookNorth, lookSouth, lookEast, lookWest} from "./capture";
 
 class App extends React.Component {
   constructor(props){
@@ -24,9 +24,17 @@ class App extends React.Component {
   }
 
   captureSquares = () => {
-    console.log(this.state);
     const north = lookNorth(this.state.clickedSquare, this.state.size);
     console.log("NORTH", north);
+
+    const south = lookSouth(this.state.clickedSquare, this.state.size);
+    console.log("SOUTH", south);
+
+    const east = lookEast(this.state.clickedSquare, this.state.size);
+    console.log("EAST", east);
+
+    const west = lookWest(this.state.clickedSquare, this.state.size);
+    console.log("WEST", west);
   }
 
   setClickedSquare = (squareId) => {
@@ -67,3 +75,4 @@ class App extends React.Component {
 }
 
 export default App;
+
