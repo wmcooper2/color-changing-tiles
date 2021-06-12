@@ -1,13 +1,29 @@
 import React from "react";
 import Grid from "./components/grid";
 import "./App.css";
-import {lookNorth, lookSouth, lookEast, lookWest} from "./capture";
+import {
+  lookNorth,
+  lookSouth,
+  lookEast,
+  lookWest,
+  lookNorthEast,
+  lookSouthEast,
+  lookSouthWest,
+  lookNorthWest,
+  changeNorth,
+  changeSouth,
+  changeEast,
+  changeWest,
+  changeNorthEast,
+  changeSouthEast,
+  changeSouthWest,
+  changeNorthWest} from "./capture";
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      size: 5,
+      size: 6,
       clickedSquare: -1
     };
     this.smallerGrid = this.smallerGrid.bind(this);
@@ -24,17 +40,48 @@ class App extends React.Component {
   }
 
   captureSquares = () => {
-    const north = lookNorth(this.state.clickedSquare, this.state.size);
-    console.log("NORTH", north);
+    const sq = this.state.clickedSquare;
+    const size = this.state.size;
 
-    const south = lookSouth(this.state.clickedSquare, this.state.size);
-    console.log("SOUTH", south);
+    const northMatch = lookNorth(sq, size);
+    if (northMatch !== null){
+      changeNorth(sq, northMatch, size);
+    }
 
-    const east = lookEast(this.state.clickedSquare, this.state.size);
-    console.log("EAST", east);
+    const southMatch = lookSouth(sq, size);
+    if (southMatch !== null){
+      changeSouth(sq, southMatch, size);
+    }
 
-    const west = lookWest(this.state.clickedSquare, this.state.size);
-    console.log("WEST", west);
+    const eastMatch = lookEast(sq, size);
+    if (eastMatch !== null){
+      changeEast(sq, eastMatch, size);
+    }
+
+    const westMatch = lookWest(sq, size);
+    if (westMatch !== null){
+      changeWest(sq, westMatch, size)
+    }
+
+    const northEastMatch = lookNorthEast(sq, size);
+    if (northEastMatch !== null){
+      changeNorthEast(sq, northEastMatch, size)
+    }
+
+    const southEastMatch = lookSouthEast(sq, size);
+    if (southEastMatch !== null){
+      changeSouthEast(sq, southEastMatch, size)
+    }
+
+    const southWestMatch = lookSouthWest(sq, size);
+    if (southWestMatch !== null){
+      changeSouthWest(sq, southWestMatch, size)
+    }
+
+    const northWestMatch = lookNorthWest(sq, size);
+    if (northWestMatch !== null) {
+      changeNorthWest(sq, northWestMatch, size)
+    }
   }
 
   setClickedSquare = (squareId) => {
@@ -63,9 +110,9 @@ class App extends React.Component {
       <div id="leftfiller"></div>
       <Grid size={this.state.size} dimension={this.mostRestrictiveDimension()} onSquareClick={this.setClickedSquare}/>
       <div className="instructions">
-        <p>Refresh to reset.</p>
-          <button onClick={() => this.biggerGrid()}>bigger</button>
-          <button onClick={() => this.smallerGrid()}>smaller</button>
+        {/* <p>Refresh to reset.</p> */}
+          {/* <button onClick={() => this.biggerGrid()}>bigger</button> */}
+          {/* <button onClick={() => this.smallerGrid()}>smaller</button> */}
           <button onClick={() => this.captureSquares()}>capture</button>
       </div>
       
