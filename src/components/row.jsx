@@ -1,14 +1,20 @@
 import React from "react";
 import Square from "./square";
 
-function Row() {
+let Row = ({Y, size, dimension, onSquareClick}) => {
   let row = [];
-  let squareID = 0;
-  for (let i = 0; i < 5; i++) {
-    row.push(<Square key={squareID} id={squareID} />);
-    squareID++;
+  let X = 0;
+  for (let i = 0; i < size; i++) {
+    // row.push(<Square key={X} id={X} xpos={X} ypos={Y} dimensions={dimensions}/>);
+    row.push(<Square key={X} id={X} xpos={X} ypos={Y} size={size} onSquareClick={onSquareClick}/>);
+    X++;
   }
-  return <div className="row">{row}</div>;
+  return (<div
+    className="row"
+    style={{height: dimension/size}}
+  
+  >{row}</div>);
 }
 
 export default Row;
+

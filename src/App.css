@@ -17,7 +17,6 @@
   --white: rgba(255, 255, 255, 1);
 
   --gameH: 100vh;
-  --square-size: calc(var(--gameH) / 5);
   --soft-borders: 3px;
   --fonts: Tahoma, Arial;
   --small-padding: 6px;
@@ -33,7 +32,24 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: var(--dark-blue);
+  background-color: var(--black);
+  margin: 0;
+}
+
+@font-face {
+  font-family: prompt;
+  src: url(/public/Prompt/Prompt-Light.ttf);
+}
+
+button {
+  background-color: white;
+  color: black;
+  font-family: prompt;
+  border-radius: 10%;
+  outline: none;
+  border: none;
+  font-size:1rem;
+  margin: 1rem;
 }
 
 #root {
@@ -49,22 +65,27 @@ body {
   width: var(--instructionsW);
 }
 
+.grid{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 100;
+}
+
 .row {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
+
 .square {
   display: flex;
-  width: var(--square-size);
-  height: var(--square-size);
+  width: 100%;
+  flex-grow: 100;
   background-color: var(--white);
-  box-shadow: inset 0px 0px 10px var(--light-blue);
-}
-
-.square:hover {
-  box-shadow: inset 0px 0px 20px var(--black);
+  box-shadow: inset 1px 0px 1px black;
+  color: red;
+  transition-duration: 1s;
 }
 
 .instructions {
@@ -89,7 +110,6 @@ body {
   border-radius: var(--soft-borders);
   margin: var(--med-margin);
   padding: var(--med-padding);
-  background-color: var(--light-blue);
 }
 
 span {
@@ -143,4 +163,18 @@ span {
 
 .square.white {
   background-color: var(--white);
+}
+
+.animated {
+  animation: corner-animation;
+  animation-duration: 400ms;
+}
+
+@keyframes corner-animation {
+  0% {border-radius: 0}
+  50% {border-radius: 25%}
+  100% {
+    border-radius: 0;
+    transform: rotate(90deg);
+  }
 }

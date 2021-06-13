@@ -1,31 +1,128 @@
 import React from "react";
-import Row from "./components/row";
+import Grid from "./components/grid";
 import "./App.css";
-// add reset buttons and an input that allows the user to choose the number of squares
+import {
+  lookNorth,
+  lookSouth,
+  lookEast,
+  lookWest,
+  lookNorthEast,
+  lookSouthEast,
+  lookSouthWest,
+  lookNorthWest,
+  changeNorth,
+  changeSouth,
+  changeEast,
+  changeWest,
+  changeNorthEast,
+  changeSouthEast,
+  changeSouthWest,
+  changeNorthWest} from "./capture";
 
-function App() {
-  let rows = [];
-  for (let i = 0; i < 5; i++) {
-    rows.push(<Row key={i} />);
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      size: 6,
+      clickedSquare: -1
+    };
+    this.smallerGrid = this.smallerGrid.bind(this);
+    this.biggerGrid = this.biggerGrid.bind(this);
+    this.mostRestrictiveDimension = this.mostRestrictiveDimension.bind(this);
+    this.captureSquares = this.captureSquares.bind(this);
   }
-  return (
+
+  mostRestrictiveDimension = () => {
+    let windowHeight = window.innerHeight;
+    let windowWidth = window.innerWidth;
+    let restriction = windowHeight > windowWidth ? windowWidth : windowHeight;
+    return restriction;
+  }
+
+  captureSquares = () => {
+
+    const sq = this.state.clickedSquare;
+    const size = this.state.size;
+
+    if (sq >= 0){
+    const northMatch = lookNorth(sq, size);
+    if (northMatch !== null){
+      changeNorth(sq, northMatch, size);
+    }
+
+    const southMatch = lookSouth(sq, size);
+    if (southMatch !== null){
+      changeSouth(sq, southMatch, size);
+    }
+
+    const eastMatch = lookEast(sq, size);
+    if (eastMatch !== null){
+      changeEast(sq, eastMatch, size);
+    }
+
+    const westMatch = lookWest(sq, size);
+    if (westMatch !== null){
+      changeWest(sq, westMatch, size)
+    }
+
+    const northEastMatch = lookNorthEast(sq, size);
+    if (northEastMatch !== null){
+      changeNorthEast(sq, northEastMatch, size)
+    }
+
+    const southEastMatch = lookSouthEast(sq, size);
+    if (southEastMatch !== null){
+      changeSouthEast(sq, southEastMatch, size)
+    }
+
+    const southWestMatch = lookSouthWest(sq, size);
+    if (southWestMatch !== null){
+      changeSouthWest(sq, southWestMatch, size)
+    }
+
+    const northWestMatch = lookNorthWest(sq, size);
+    if (northWestMatch !== null) {
+      changeNorthWest(sq, northWestMatch, size)
+    }
+  }
+  }
+
+  setClickedSquare = (squareId) => {
+    this.setState({
+      clickedSquare: squareId
+    })
+  }
+
+  smallerGrid = () => {
+    let currentSize = this.state.size;
+    this.setState({
+      size: currentSize > 3 ? currentSize - 1 : 3
+    })
+  }
+
+  biggerGrid = () => {
+    let currentSize = this.state.size;
+    this.setState({
+      size: currentSize < 10 ? currentSize + 1 : 10
+    })
+  }
+
+  render() {
+    return (
     <React.Fragment>
       <div id="leftfiller"></div>
-      <div className="App">{rows}</div>
+      <Grid size={this.state.size} dimension={this.mostRestrictiveDimension()} onSquareClick={this.setClickedSquare}/>
       <div className="instructions">
-        <p>Click on a square to change its color.</p>
-        <p>Squares cycle through these colors.</p>
-        <p>Refresh the page to reset the board.</p>
-        <p className="colors">
-          <span className="red">Red</span>
-          <span className="yellow">Yellow</span>
-          <span className="green">Green</span>
-          <span className="blue">Blue</span>
-          <span className="purple">Purple</span>
-        </p>
+        {/* <p>Refresh to reset.</p> */}
+          {/* <button onClick={() => this.biggerGrid()}>bigger</button> */}
+          {/* <button onClick={() => this.smallerGrid()}>smaller</button> */}
+          <button onClick={() => this.captureSquares()}>capture</button>
       </div>
+      
     </React.Fragment>
-  );
+    );
+  }
 }
 
 export default App;
+

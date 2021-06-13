@@ -21,7 +21,8 @@ There was a significant problem with the version they made because of the quirks
 * JavaScript
 
 ## Problems/Solutions
-N/A
+* getting the squares to adapt to the most restrictive window dimension so that it would always be square and fit within the window was a small challenge after having not coded in JavaScript for a few months.
+* getting the capture of other squares to work automatically would require some other mechanism like keeping track of what player was the current one, so instead I added a button to allow the user to choose when to capture so if they make a mistake in clicking a square, it would not ruin the state of the game by automatically capturing other colors.
 
 ## More Information
 N/A

@@ -1,43 +1,57 @@
 import React from "react";
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor({id, xpos, ypos, size, onSquareClick}) {
+    super();
     this.state = {
-      choice: 0,
-      inPlay: false
+      colorIndex: 0,
+      inPlay: false,
+      color: "white",
+      classes: "square",
+      animated: false,
+      squareID: id,
+      size: size,
+      xpos: xpos,
+      ypos: ypos,
     };
+    this.colors = ["purple", "red", "yellow", "green", "blue"];
     this.handleClick = this.handleClick.bind(this);
+    this.cycleColor = this.cycleColor.bind(this);
+    this.toggleAnimation = this.toggleAnimation.bind(this);
+    this.onSquareClick = onSquareClick;
   }
 
-  handleClick = () => {
-    let newChoice;
-    if (this.state.choice >= 4) {
-      newChoice = 0;
-    } else {
-      newChoice = this.state.choice + 1;
-    }
+  cycleColor = () => {
+    let color = this.state.colorIndex >= 4 ? 0 : this.state.colorIndex +1;
     this.setState({
       inPlay: true,
-      choice: newChoice
+      colorIndex: color,
+      classes: "square " + this.colors[this.state.colorIndex]
     });
+  }
+
+  toggleAnimation = () => {
+    this.setState(() => ({
+      animated:true
+    }));
+    setTimeout(() => this.setState(
+      () => ({animated: false})), 300);
+  }
+
+  handleClick = (e) => {
+    this.cycleColor();
+    this.toggleAnimation();
+    this.onSquareClick(e.target.id);
   };
 
-  defaultColor = "white";
-  colors = ["purple", "red", "yellow", "green", "blue"];
-
   render() {
-    let squareColor = this.state.inPlay
-      ? this.colors[this.state.choice]
-      : this.defaultColor;
-    let classes = "square " + squareColor;
     return (
       <div
-        className={classes}
-        onClick={event => {
-          this.handleClick(event);
-        }}
-      ></div>
+        className={`${this.state.classes} ${this.state.animated ? "animated" : ""}`}
+        onClick={event => { this.handleClick(event); }}
+        id={this.state.ypos * this.state.size + this.state.xpos}>
+        {/* {this.state.ypos * this.state.size + this.state.xpos} */}
+      </div>
     );
   }
 }
