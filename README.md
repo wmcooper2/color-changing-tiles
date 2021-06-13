@@ -21,6 +21,7 @@ It has evolved a bit more since the original and now it's not so much of a clone
 * HTML
 * CSS
 * JavaScript
+* React
 
 ## Problems/Solutions
 * getting the squares to adapt to the most restrictive window dimension so that it would always be square and fit within the window was a small challenge after having not coded in JavaScript for a few months.  
