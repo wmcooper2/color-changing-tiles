@@ -28,12 +28,18 @@
   --instructionsH: var(--gameH);
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
+  height: 100vh;
   justify-content: center;
   background-color: var(--black);
-  margin: 0;
+  /* margin: 0; */
 }
 
 @font-face {
@@ -45,30 +51,35 @@ button {
   background-color: white;
   color: black;
   font-family: prompt;
-  border-radius: 10%;
+  /* border-radius: 10%; */
   outline: none;
   border: none;
-  font-size:1rem;
-  margin: 1rem;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.2rem;
+  box-shadow: inset 1px 0px 1px black;
 }
 
 #root {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-#App {
-  margin: 3vh 3vw;
-}
 
 #leftfiller {
   width: var(--instructionsW);
 }
 
+.app{
+  display: flex;
+  flex-direction: column;
+}
+
 .grid{
   display: flex;
   flex-direction: column;
-  flex-grow: 100;
+  /* flex-grow: 90; */
 }
 
 .row {
@@ -84,22 +95,21 @@ button {
   flex-grow: 100;
   background-color: var(--white);
   box-shadow: inset 1px 0px 1px black;
-  color: red;
+  /* color: red; */
   transition-duration: 1s;
 }
 
-.instructions {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-  align-items: center;
-  color: var(--white);
-  font-weight: bold;
-  font-family: var(fonts);
-  border-radius: var(--soft-borders);
-}
+/* .instructions { */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
+  /* text-align: center; */
+  /* align-items: center; */
+  /* color: var(--white); */
+  /* font-weight: bold; */
+  /* font-family: var(fonts); */
+/* } */
 
 .colors {
   display: flex;
@@ -117,48 +127,24 @@ span {
   font-weight: bold;
 }
 
-.red {
-  color: var(--light-red);
-}
-
 .square.red {
   background-color: var(--light-red);
-}
-
-.yellow {
-  color: var(--pastel-yellow);
 }
 
 .square.yellow {
   background-color: var(--pastel-yellow);
 }
 
-.green {
-  color: var(--pastel-green);
-}
-
 .square.green {
   background-color: var(--pastel-green);
-}
-
-.blue {
-  color: var(--dark-blue);
 }
 
 .square.blue {
   background-color: var(--dark-blue);
 }
 
-.purple {
-  color: var(--pastel-purple);
-}
-
 .square.purple {
   background-color: var(--pastel-purple);
-}
-
-.white {
-  color: var(--white);
 }
 
 .square.white {

@@ -36,7 +36,7 @@ class App extends React.Component {
     let windowHeight = window.innerHeight;
     let windowWidth = window.innerWidth;
     let restriction = windowHeight > windowWidth ? windowWidth : windowHeight;
-    return restriction;
+    return restriction *.90;
   }
 
   captureSquares = () => {
@@ -109,17 +109,12 @@ class App extends React.Component {
 
   render() {
     return (
-    <React.Fragment>
-      <div id="leftfiller"></div>
+      <div className="app">
       <Grid size={this.state.size} dimension={this.mostRestrictiveDimension()} onSquareClick={this.setClickedSquare}/>
-      <div className="instructions">
-        {/* <p>Refresh to reset.</p> */}
           {/* <button onClick={() => this.biggerGrid()}>bigger</button> */}
           {/* <button onClick={() => this.smallerGrid()}>smaller</button> */}
           <button onClick={() => this.captureSquares()}>capture</button>
       </div>
-      
-    </React.Fragment>
     );
   }
 }
